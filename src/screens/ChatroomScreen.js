@@ -25,7 +25,9 @@ const ChatroomScreen = ({ navigation }) => {
   };
 
   const handleUpload = () => {};
-  const handleMenu = () => {};
+  const handleMenu = () => {
+    navigation.navigate('Settings');
+  };
   const handleGrid = () => {};
 
   const handlePreview = (reportType) => {

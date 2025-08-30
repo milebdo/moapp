@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: monaapp_postgres
+    environment:
+      POSTGRES_DB: monaapp
+      POSTGRES_USER: monaapp_user
+      POSTGRES_PASSWORD: monaapp_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - monaapp_network
+
+  backend:
+    build: .
+    container_name: monaapp_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://monaapp_user:monaapp_password@db:5432/monaapp
+      - SECRET_KEY=your-secret-key-change-in-production
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - QRIS_API_BASE_URL=https://qris.interactive.co.id/restapi/qris
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    networks:
+      - monaapp_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  monaapp_network:
+    driver: bridge

@@ -12,6 +12,9 @@ import SignupScreen from './src/screens/SignupScreen';
 import ChatroomScreen from './src/screens/ChatroomScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import HelloScreen from './src/screens/HelloScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
+import QRISSettingsScreen from './src/screens/QRISSettingsScreen';
+import QRISListScreen from './src/screens/QRISListScreen';
 
 const Stack = createStackNavigator();
 
@@ -47,6 +50,9 @@ export default function App() {
           <Stack.Screen name="Signup" component={SignupScreen} />
           <Stack.Screen name="Hello" component={HelloScreen} />
           <Stack.Screen name="Chatroom" component={ChatroomScreen} />
+          <Stack.Screen name="Settings" component={SettingsScreen} />
+          <Stack.Screen name="QRISList" component={QRISListScreen} />
+          <Stack.Screen name="QRISSettings" component={QRISSettingsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
